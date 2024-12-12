@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="bg-white font-sans h-screen flex items-center justify-center relative"
+  >
+    <!-- Main Container -->
+    <div class="max-w-6xl mx-auto p-4">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+        <!-- Image Section -->
+        <div class="flex justify-center">
+          <img
+            id="main-thumbnail"
+            src="images/purple.png"
+            alt="Product Image"
+            class="rounded-lg shadow-lg w-3/4 lg:w-full"
+          />
+        </div>
+
+        <!-- Product Details -->
+        <div>
+          <h1 id="name" class="text-2xl font-bold text-gray-800">
+            Classy Modern Smart Watch
+          </h1>
+          <div class="flex items-center mt-2">
+            <div class="flex text-yellow-400">
+              <span>&#9733;</span>
+              <span>&#9733;</span>
+              <span>&#9733;</span>
+              <span>&#9733;</span>
+              <span class="text-gray-300">&#9733;</span>
+            </div>
+            <p class="text-gray-500 text-sm ml-2">(2 Reviews)</p>
+          </div>
+
+          <!-- Price -->
+          <div class="mt-4 flex items-baseline space-x-4">
+            <p class="text-gray-400 line-through">$99.00</p>
+            <p id="price" class="text-2xl font-bold text-blue-600">$79.00</p>
+          </div>
+
+          <!-- Description -->
+          <p class="text-gray-600 mt-4">
+            I must explain to you how all this mistaken idea of denouncing
+            pleasure and praising pain was born and I will give you a complete
+            account of the system, and expound the actual teaching.
+          </p>
+
+          <!-- Options -->
+          <div class="mt-6 flex gap-10 items-center">
+            <div>
+              <p class="text-gray-600">Type</p>
+              <h4 class="text-lg font-medium text-gray-800">Watch</h4>
+            </div>
+            <div>
+              <p class="text-gray-600">Model Number</p>
+              <h4 class="text-lg font-medium text-gray-800">
+                Forerunner 290XT
+              </h4>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <h3 class="text-lg font-medium text-gray-800">Band Color</h3>
+            <div class="flex items-center space-x-4 mt-2">
+              <button
+                class="w-6 h-6 rounded-full bg-purple-500 transition-all duration-100 ease-in-out"
+                data-thumbnail="images/purple.png"
+                data-color="Purple"
+              ></button>
+              <button
+                class="w-6 h-6 rounded-full bg-cyan-500 transition-all duration-100 ease-in-out"
+                data-thumbnail="images/cyan.png"
+                data-color="Cyan"
+              ></button>
+              <button
+                class="w-6 h-6 rounded-full bg-blue-500 transition-all duration-100 ease-in-out"
+                data-thumbnail="images/blue.png"
+                data-color="Blue"
+              ></button>
+              <button
+                class="w-6 h-6 rounded-full bg-black transition-all duration-100 ease-in-out"
+                data-thumbnail="images/black.png"
+                data-color="Black"
+              ></button>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <h3 class="text-lg font-medium text-gray-800">Wrist Size</h3>
+            <div class="flex items-center space-x-4 mt-2">
+              <button
+                class="px-4 py-2 border rounded text-sm text-gray-700 border-gray-300 size-button hover:bg-gray-100 transition-colors duration-300 ease-in-out"
+                data-size="S"
+              >
+                S $69
+              </button>
+              <button
+                class="px-4 py-2 border rounded text-sm text-gray-700 border-gray-300 size-button hover:bg-gray-100 transition-colors duration-300 ease-in-out"
+                data-size="M"
+              >
+                M $79
+              </button>
+              <button
+                class="px-4 py-2 border rounded text-sm text-gray-700 border-gray-300 size-button hover:bg-gray-100 transition-colors duration-300 ease-in-out"
+                data-size="L"
+              >
+                L $89
+              </button>
+              <button
+                class="px-4 py-2 border rounded text-sm text-gray-700 border-gray-300 size-button hover:bg-gray-100 transition-colors duration-300 ease-in-out"
+                data-size="XL"
+              >
+                XL $99
+              </button>
+            </div>
+          </div>
+
+          <!-- Add to Cart -->
+          <div class="mt-6">
+            <div class="flex items-center space-x-4">
+              <div class="flex items-center border border-gray-300 rounded">
+                <button
+                  class="px-4 py-2 text-gray-700"
+                  onclick="updateQuantity(-1)"
+                >
+                  -
+                </button>
+                <input
+                  id="quantity"
+                  type="number"
+                  value="1"
+                  min="1"
+                  class="w-12 text-center border-l border-r border-gray-300"
+                />
+                <button
+                  class="px-4 py-2 text-gray-700"
+                  onclick="updateQuantity(1)"
+                >
+                  +
+                </button>
+              </div>
+              <button
+                class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                id="add-to-cart"
+              >
+                Add to Cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Checkout Button -->
+    <button
+      id="checkout-button"
+      class="hidden fixed bottom-10 right-[46%] bg-amber-500 text-black px-6 py-2 rounded-full shadow-lg hover:bg-amber-600"
+    >
+      Checkout
+      <span id="cart-count" class="ml-2 px-2 py-[2px] rounded bg-white">0</span>
+    </button>
+
+    <!-- Modal -->
+    <div
+      id="cart-modal"
+      class="hidden fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+    >
+      <div class="bg-white rounded-lg p-6 max-w-2xl w-full relative">
+        <!-- Close Button -->
+        <button
+          id="close-modal-button"
+          class="absolute top-0 right-2 text-gray-500 hover:text-gray-700"
+          onclick="closeModal()"
+        >
+          &times;
+        </button>
+        <h2 class="text-xl font-bold mb-4">Your Cart</h2>
+        <div id="cart-items" class="space-y-4"></div>
+        <div class="flex items-center justify-end gap-6">
+          <button
+            class="mt-4 px-6 py-2 border text-black rounded"
+            onclick="closeModal()"
+          >
+            Continue Shopping
+          </button>
+          <button
+            class="mt-4 px-6 py-2 bg-blue-600 text-white rounded"
+            onclick="closeModal()"
+          >
+            Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
