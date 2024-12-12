@@ -1,5 +1,9 @@
 # Product Cart
 
+## Live Demo
+
+Check out the live demo of the project [here](https://product-cart-vanillajs.vercel.app).
+
 ## Instructions to Run the Project
 
 1. **Clone the repository:**
